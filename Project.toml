@@ -1,0 +1,10 @@
+name = "DeepLife"
+uuid = "6a4d8837-8ab2-55b6-992f-10b707f373f9"
+authors = ["chaanks <jarod8405@gmail.com>"]
+version = "0.1.0"
+
+[extras]
+Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
+
+[targets]
+test = ["Test"]
