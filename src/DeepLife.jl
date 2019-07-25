@@ -1,8 +1,10 @@
 module DeepLife
 
-#push!(LOAD_PATH, @__DIR__)
+push!(LOAD_PATH, @__DIR__)
 
 using Revise
+using Genie
+using Genie.Router, Genie.WebChannels, Genie.Configuration
 
 
 include("neat/Neat.jl")
@@ -12,6 +14,34 @@ export Connection
 export Node, NodeType
 export Network
 
+
+server = function ()
+    ENV["GENIE_ENV"] = "dev"
+    include(joinpath(Genie.ENV_PATH, ENV["GENIE_ENV"] * ".jl"))
+    
+    route("/mychannel/subscribe") do 
+        # logic here to render your single web page
+        serve_static_file("welcome.html")
+    end
+    
+    route("/hello") do
+        "Hello - Welcome to Genie!"
+    end
+    
+    channel("/mychannel/subscribe") do 
+        WebChannels.subscribe(@params(:WS_CLIENT), "mychannel")
+        @show "Subscription OK"
+    end
+      
+    function do_your_stuff_here()
+        # push updates
+        WebChannels.message("mychannel", json_payload)
+    end
+        
+    Genie.startup()
+    Genie.run()
+
+end
 
 lol = function ()
     println("debug")

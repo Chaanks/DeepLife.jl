@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Genie :: The Highly Productive Julia Web Framework</title>
+  </head>
+  <body>
+      <script src="/js/app/channels.js"></script>
+      <script>
+        function subscribe() {
+          WebChannels.sendMessageTo("mychannel", "subscribe");
+          console.log("WS subscription ready");
+        }
+
+        setTimeout(subscribe, 2000);
+
+        WebChannels.messageHandlers.push(function(event) {
+          console.log(event.data);
+        });
+
+        function sendping() {
+          WebChannels.sendMessageTo("mychannel", "ping");
+        }
+      </script>
+
+
+
+      <h1>Evolved</h1>
+      <button onclick="sendping()">Ping</button>
+  </body>
+</html>
