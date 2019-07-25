@@ -1,8 +1,8 @@
-using DeepLife, DeepLife.Neat
+using Lib, Lib.Neat
 using Test
 
 
-@testset "DeepLife.jl" begin
+@testset "Lib.jl" begin
 
     @testset "Neat" begin
 
