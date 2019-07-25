@@ -2,6 +2,7 @@ module Lib
 
 using Revise
 
+
 include("neat/Neat.jl")
 using .Neat
 export sigmoid
@@ -25,6 +26,13 @@ lol = function ()
     println(net)
     #conn = Connection(1, 2)
     #add_connection!(n1, conn)
+end
+
+
+test = function ()
+
+return "lib"
+
 end
 
 

@@ -1,4 +1,6 @@
 using Genie.Router, Genie.WebChannels
+using Lib
+
 
 route("/") do
   serve_static_file("welcome.html")
@@ -24,10 +26,16 @@ end
 
 channel("/mychannel/ping") do 
   WebChannels.message(@params(:WS_CLIENT), "pong")
+
+  msg = Lib.test()
+  WebChannels.message(@params(:WS_CLIENT), msg)
+
   @show "pong OK"
 end
 
 function do_your_stuff_here()
   # push updates
-  WebChannels.message("mychannel", json_payload)
+  #WebChannels.message("mychannel", json_payload)
+
+  WebChannels.message("mychannel", "test")
 end
