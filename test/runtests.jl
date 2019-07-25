@@ -19,6 +19,18 @@ using Test
             @test n1 != n2
             #@test_throws AssertionError Node(1, INPUT::NodeType, "sigmoid", 1., conns)
 
+
+        end
+
+        @testset "Network" begin
+            conf = Dict(
+                "num_inputs" => 2,
+                "num_outputs" => 1
+            )
+        
+            net = Network(conf)
+            #println(net)
+
         end
     end
 end
